@@ -1,5 +1,6 @@
 # automating-Powerpoint-graphs-using-Powerpoint-VBA
 Being able to update the chart data in PowerPoint with a click of a VBA button. The script retrieves data from an Excel workbook then updates the respective chart data
+```vba
 Sub update_graph()
 
 Dim myppt As PowerPoint.Presentation
@@ -31,12 +32,10 @@ Dim ii As Integer
 Dim count As Integer
 Dim week As Variant
 Dim iterator As Variant
-'Dim lastrow As Long
-'starttime = Timer
 
 'Update_display (False)
 'Application.Calculation = xlCalculateManual
-FileName = "D:\brian\learning\vba\test.xlsx"
+FileName = "...\vba\test.xlsx"
 
 'Set mypptApp = CreateObject("PowerPoint.Application")
 'Set myppt = mypptApp.Presentations.Open(FileName, WithWindow:=msoFalse)
@@ -61,7 +60,6 @@ For Each slide In myppt.Slides
         Set chart = shape.chart
         Set mypptchrtdta = chart.ChartData
         'mypptchrtdta.Activate
-        'Set cTable = mypptchrtdta.Workbook.Worksheets(1).ListObjects("Table1")
         
 
         
@@ -74,7 +72,7 @@ For Each slide In myppt.Slides
             v = v + 1 'MsgBox "empty chart"
             ElseIf Not IsEmpty(rng2.Value) And Not IsEmpty(rng.Value) Then
                 count = count + 1
-            'Else
+            
                     On Error GoTo err_handling
                     mypptchrtdta.Activate
                     'pasting the data
@@ -95,9 +93,7 @@ For Each slide In myppt.Slides
                     'mypptchrtdta.Workbook.Close
                     
 
-            'Else
-
-            'Not IsEmpty(rng2.Value)
+            
 'Line1:
             End If
         i = i + 1
@@ -106,13 +102,9 @@ For Each slide In myppt.Slides
     Next
 
 Next
-'Update_display (True)
-'Application.Calculation = xlCalculateAutomatic
-
-'myppt.Save
 
 i = i - 1
-'MsgBox Prompt:=i & " Charts have been updated", Buttons:=vbInformation
+
 err_handling:
                     On Error GoTo -1
                     Err.Clear
@@ -120,12 +112,11 @@ err_handling:
 
 Set ws = Nothing
 MsgBox v & " charts not updated", vbInformation
-'myppt.Save
 Set wb = Nothing
 xlApp.Quit
 End Sub
 
-
+```
 
 
 
